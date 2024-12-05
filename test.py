@@ -4,7 +4,18 @@ import matplotlib
 
 matplotlib.rcParams['font.family'] = 'Malgun Gothic' # 폰트 맑은 고딕
 
-student_dist_by_subject = "20231231.csv"  # 과목, 표준점수별 학생 수 분포 데이터
+while True: # (추가 내용 2차과제) 연도 선택하는 코드, {year}1231.csv 형식으로 코드 받아서 그래프 표시
+    try: 
+        year_choice = input("연도를 선택하세요(2020, 2021, 2022, 2023) : ")
+        if year_choice in ['2020', '2021', '2022', '2023']:
+            selected_year = year_choice
+            break
+        else:
+            print("2020, 2021, 2022, 2023 중 하나의 연도를 선택해주세요.")
+    except ValueError:
+        print("올바른 숫자를 입력해주세요.")
+
+student_dist_by_subject = f"{selected_year}1231.csv"
 
 # 우선 큰 과목 영역(국수탐) 정하기
 subject_areas = []
@@ -91,10 +102,17 @@ x_values = sorted_standard_scores
 y_male = sorted_male_student_counts
 y_female = sorted_female_student_counts
 
-plt.plot(x_values, y_male, label='남자', color='royalblue', linestyle='-', linewidth=2)
-plt.plot(x_values, y_female, label='여자', color='lightpink', linestyle='-', linewidth=2)
+bar_width = 0.4
+x_indexes = range(len(x_values))
 
-plt.title(f'2024학년도 수능 {selected_subject_type} 성적 분포')
+'''plt.plot(x_values, y_male, label='남자', color='royalblue', linestyle='-', linewidth=2)
+plt.plot(x_values, y_female, label='여자', color='lightpink', linestyle='-', linewidth=2)'''
+#선그래프 -> 히스토그램
+plt.bar([x - bar_width/2 for x in x_indexes], y_male, width=bar_width, label='남자',color='royalblue')
+plt.bar([x + bar_width/2 for x in x_indexes], y_female, width=bar_width, label='여자',color='lightpink')
+plt.xticks(ticks=x_indexes, labels=x_values, rotation = 90)
+
+plt.title(f'{int(selected_year) + 1}학년도 수능 {selected_subject_type} 성적 분포')
 plt.xlabel('표준점수')
 plt.ylabel('학생 수')
 
