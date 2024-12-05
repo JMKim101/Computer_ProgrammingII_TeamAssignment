@@ -91,8 +91,15 @@ x_values = sorted_standard_scores
 y_male = sorted_male_student_counts
 y_female = sorted_female_student_counts
 
-plt.plot(x_values, y_male, label='남자', color='royalblue', linestyle='-', linewidth=2)
-plt.plot(x_values, y_female, label='여자', color='lightpink', linestyle='-', linewidth=2)
+bar_width = 0.4
+x_indexes = range(len(x_values))
+
+'''plt.plot(x_values, y_male, label='남자', color='royalblue', linestyle='-', linewidth=2)
+plt.plot(x_values, y_female, label='여자', color='lightpink', linestyle='-', linewidth=2)'''
+
+plt.bar([x - bar_width/2 for x in x_indexes], y_male, width=bar_width, label='남자',color='royalblue')
+plt.bar([x + bar_width/2 for x in x_indexes], y_female, width=bar_width, label='여자',color='lightpink')
+plt.xticks(ticks=x_indexes, labels=x_values, rotation = 90)
 
 plt.title(f'2024학년도 수능 {selected_subject_type} 성적 분포')
 plt.xlabel('표준점수')
