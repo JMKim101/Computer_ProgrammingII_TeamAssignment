@@ -112,7 +112,7 @@ plt.bar([x - bar_width/2 for x in x_indexes], y_male, width=bar_width, label='�
 plt.bar([x + bar_width/2 for x in x_indexes], y_female, width=bar_width, label='여자',color='lightpink')
 plt.xticks(ticks=x_indexes, labels=x_values, rotation = 90)
 
-plt.title(f'{selected_year}학년도 수능 {selected_subject_type} 성적 분포')
+plt.title(f'{int(selected_year) + 1}학년도 수능 {selected_subject_type} 성적 분포')
 plt.xlabel('표준점수')
 plt.ylabel('학생 수')
 
