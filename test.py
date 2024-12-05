@@ -4,7 +4,22 @@ import matplotlib
 
 matplotlib.rcParams['font.family'] = 'Malgun Gothic' # 폰트 맑은 고딕
 
+<<<<<<< HEAD
 student_dist_by_subject = "20231231.csv"  # 과목, 표준점수별 학생 수 분포 데이터
+=======
+while True: # (추가 내용 2차과제) 연도 선택하는 코드, {year}1231.csv 형식으로 코드 받아서 그래프 표시
+    try: 
+        year_choice = input("연도를 선택하세요(2020, 2021, 2022, 2023) : ")
+        if year_choice in ['2020', '2021', '2022', '2023']:
+            selected_year = year_choice
+            break
+        else:
+            print("2020, 2021, 2022, 2023 중 하나의 연도를 선택해주세요.")
+    except ValueError:
+        print("올바른 숫자를 입력해주세요.")
+
+student_dist_by_subject = f"{selected_year}1231.csv"
+>>>>>>> 489ee8b0638164a853d807b005abb21e5af85467
 
 # 우선 큰 과목 영역(국수탐) 정하기
 subject_areas = []
